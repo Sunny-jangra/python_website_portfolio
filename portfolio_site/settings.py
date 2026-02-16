@@ -121,6 +121,15 @@ try:
 except Exception as e:
     print("Superuser creation skipped:", e)
 
+portfolio_site/settings.py
+import os
+if os.environ.get("RENDER"):
+    from django.core.management import call_command
+    call_command("migrate")
+    call_command("createsu")
+
+
+
 
 
 
