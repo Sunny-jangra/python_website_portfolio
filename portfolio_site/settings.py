@@ -93,6 +93,36 @@ import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+import os
+
+DJANGO_SUPERUSER_USERNAME = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+DJANGO_SUPERUSER_EMAIL = os.environ.get("DJANGO_SUPERUSER_EMAIL")
+DJANGO_SUPERUSER_PASSWORD = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
+
+
+import os
+from django.contrib.auth import get_user_model
+
+def create_superuser():
+    username = os.environ.get("DJANGO_SUPERUSER_USERNAME")
+    email = os.environ.get("DJANGO_SUPERUSER_EMAIL")
+    password = os.environ.get("DJANGO_SUPERUSER_PASSWORD")
+
+    if username and email and password:
+        User = get_user_model()
+        if not User.objects.filter(username=username).exists():
+            print("Creating superuser...")
+            User.objects.create_superuser(username=username, email=email, password=password)
+        else:
+            print("Superuser already exists.")
+
+try:
+    create_superuser()
+except Exception as e:
+    print("Superuser creation skipped:", e)
+
+
+
 
 
 
