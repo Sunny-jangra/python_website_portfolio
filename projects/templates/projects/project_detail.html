@@ -1,0 +1,79 @@
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            text = request.POST.get("comment")
+            if text:
+                Comment.objects.create(
+                    project=project,
+                    user=request.user,
+                    text=text
+                )
+        return redirect('project_detail', pk=pk)
+
+    user_liked = False
+    if request.user.is_authenticated:
+        user_liked = Like.objects.filter(project=project, user=request.user).exists()
+
+    context = {
+        'project': project,
+        'user_liked': user_liked,
+        'like_count': project.likes.count(),
+        'comments': project.comments.all().order_by('-created_at')
+    }
+
+    return render(request, 'projects/project_detail.html', context)
+    <div class="actions">
+
+  {% if user.is_authenticated %}
+    <form action="{% url 'toggle_like' project.pk %}" method="POST">
+      {% csrf_token %}
+      <button class="btn btn-primary" type="submit">
+        {% if user_liked %}
+          ❤️ Unlike
+        {% else %}
+          🤍 Like
+        {% endif %}
+        ({{ like_count }})
+      </button>
+    </form>
+  {% else %}
+    <p style="color:var(--muted)">Login to like</p>
+  {% endif %}
+
+</div>
+
+<hr class="hr">
+
+<h3>📊 Key Insights</h3>
+
+{% if user.is_authenticated %}
+<form method="POST">
+  {% csrf_token %}
+  <textarea placeholder="Write an insight you discovered from analysis..."></textarea>
+    style="width:100%;padding:10px;border-radius:10px;background:#111;color:white;border:1px solid #333;"></textarea>
+  <br><br>
+  <button type="submit">Add Insight</button>
+</form>
+{% else %}
+<p style="color:var(--muted)">Login to comment</p>
+{% endif %}
+
+<br>
+
+{% for comment in comments %}
+  <div class="card">
+    <strong>{{ comment.user.username }}</strong>
+    <small style="color:gray;">{{ comment.created_at|date:"M d, Y H:i" }}</small>
+    <p>{{ comment.text }}</p>
+  </div>
+{% empty %}
+  <p style="color:gray;">No comments yet.</p>
+{% endfor %}
+
+{% url 'toggle_like' project.pk %}
+
+
+
+

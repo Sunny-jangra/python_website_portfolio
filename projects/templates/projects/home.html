@@ -1,0 +1,252 @@
+{% extends 'projects/base.html' %}
+{% load static %}
+{% block title %}Home | Portfolio{% endblock %}
+
+{% block content %}
+
+<div class="hero-top">
+    <img src="{% static 'projects/profile.jpg' %}" class="hero-avatar" alt="Sunny">
+</div>
+
+
+<section class="hero">
+  <div class="hero-card">
+    <div class="badge">⚡ Building • Learning • Shipping</div>
+    <h1>Hi, I'm Sunny 👋</h1>
+    <p>
+      BCA student → building projects & moving towards ML Engineering.
+      I focus on clean UI + real skills.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{% url 'projects' %}">🚀 See Projects</a>
+      <a class="btn btn-ghost" href="{% url 'about' %}">✨ About Me</a>
+    </div>
+  </div>
+
+  <div class="hero-side">
+    <div class="stat"><b>Status:</b> Active</div>
+    <div class="stat"><b>Focus:</b> Python • Data • ML</div>
+    <div class="stat"><b>Goal:</b> ML Engineer</div>
+    <p style="margin-top:10px;color:var(--muted);">
+      Tip: Add skills from <b>/admin</b> to update instantly.
+    </p>
+  </div>
+</section>
+
+<div class="social-links">
+  <a href="https://www.linkedin.com/in/sunny-jangra/" target="_blank" class="social-btn"><i class="fa-brands fa-linkedin"></i></a>
+  <a href="https://github.com/Sunny-jangra" target="_blank" class="social-btn"><i class="fa-brands fa-github"></i></a>
+  <a href="https://www.youtube.com/@Sunny_jangra123" target="_blank" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+  <a class="social-btn upwork" href="https://www.upwork.com/freelancers/~0111123b5382c43539" target="_blank" rel="noopener" title="Upwork">
+  <span class="upwork-badge">Up</span>
+</a>
+
+</div>
+
+
+<!-- 🔥 SIMPLE GLOW SKILLS SECTION -->
+
+<section class="skills">
+  <h2>⚡ My Skills</h2>
+
+  <div class="skills-grid">
+    {% for s in skills %}
+      <div class="skill-card">
+        {{ s.name }}
+      </div>
+    {% empty %}
+      <p style="color:var(--muted);">No skills added yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<div class="hire-badge">
+    <p class="availability-badge">🚀 Available for Data Analyst Internship • Remote</p>
+</div>
+
+<section class="cta">
+  <div class="cta-card">
+    <div class="cta-left">
+      <h2>Let’s work together 🤝</h2>
+      <p>
+        I’m available for <b>Data Analyst Internship (Remote)</b>.
+        If you have a task or project, I can help with dashboards, reports, and data cleaning.
+      </p>
+
+      <div class="cta-actions">
+        <a class="btn btn-primary" target="_blank"
+   href="https://mail.google.com/mail/?view=cm&fs=1&to=sunnyjangra12hr@gmail.com&su=Internship%20Opportunity&body=Hi%20Sunny,">
+  📩 Email Me
+</a>
+
+<a class="btn btn-outline" target="_blank" href="/static/resume.pdf">
+    📄 View Resume
+</a>
+
+        <a class="btn btn-ghost" href="{% url 'contact' %}">✨ Contact Page</a>
+      </div>
+
+      <div class="cta-mini">
+        <span>⚡ Fast replies</span>
+        <span>✅ Work samples ready</span>
+        <span>📊 Power BI + Python</span>
+      </div>
+    </div>
+
+    <div class="cta-right">
+      <div class="cta-badge">Open to Work</div>
+      <div class="cta-box">
+        <div class="cta-row"><b>Role:</b> Data Analyst Intern</div>
+        <div class="cta-row"><b>Mode:</b> Remote</div>
+        <div class="cta-row"><b>Focus:</b> Python • Power BI • SQL</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% load static %}
+
+<section class="project-samples">
+  <div class="section-head">
+    <h2>🚀 Project Samples</h2>
+    <p>Power BI + Python dashboards (click to view details)</p>
+  </div>
+
+  <div class="projects-grid">
+    <!-- Project 1 -->
+    <article class="p-card">
+      <div class="p-img">
+        <img src="{% static 'projects/p1_sales.png' %}" alt="E-commerce Sales Dashboard">
+      </div>
+
+      <div class="p-body">
+        <h3>E-commerce Sales & Profit</h3>
+        <p class="p-desc">
+          KPI cards, monthly trends, category/region analysis, top products & profit insights.
+        </p>
+
+        <div class="p-tags">
+          <span>Power BI</span><span>Python</span><span>DAX</span>
+        </div>
+
+        <div class="p-actions">
+          <a class="btn-lite" href="{% url 'projects' %}">View Projects</a>
+          <a class="btn-ghost" href="{% url 'contact' %}">Contact</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="p-card">
+      <div class="p-img">
+        <img src="{% static 'projects/p2_jobs.png' %}" alt="Job Market Dashboard">
+      </div>
+
+      <div class="p-body">
+        <h3>Job Market Skills & Salary</h3>
+        <p class="p-desc">
+          Skill demand (SQL/Excel/PBI), city-wise jobs, salary distribution, remote vs onsite.
+        </p>
+
+        <div class="p-tags">
+          <span>Pandas</span><span>Power BI</span><span>Insights</span>
+        </div>
+
+        <div class="p-actions">
+          <a class="btn-lite" href="{% url 'projects' %}">View Projects</a>
+          <a class="btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="p-card">
+      <div class="p-img">
+        <img src="{% static 'projects/p3_churn.png' %}" alt="Churn Dashboard">
+      </div>
+
+      <div class="p-body">
+        <h3>Customer Churn Analysis</h3>
+        <p class="p-desc">
+          Churn rate, contract/payment impact, segments, retention recommendations.
+        </p>
+
+        <div class="p-tags">
+          <span>Python</span><span>EDA</span><span>Power BI</span>
+        </div>
+
+        <div class="p-actions">
+          <a class="btn-lite" href="{% url 'projects' %}">View Projects</a>
+          <a class="btn-ghost" href="#contact">Contact</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="testimonials">
+  <h2 class="testi-title">💬 Feedback & Reviews</h2>
+  <p class="testi-sub">Real feedback from LinkedIn comments</p>
+
+  <div class="testi-grid">
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <span class="testi-badge">in</span>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+
+      <p class="testi-quote">“Nice work”</p>
+
+      <div class="testi-person">
+        <span class="testi-name">Ezekiel Mabel</span>
+        <span class="testi-role">Banking & Finance Graduate</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <span class="testi-badge">in</span>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+
+      <p class="testi-quote">“Well done Sunny Jangra”</p>
+
+      <div class="testi-person">
+        <span class="testi-name">Samim Imtiaz</span>
+        <span class="testi-role">Area Manager • Samsung Electronics</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <span class="testi-badge">in</span>
+        <span class="testi-stars">★★★★★</span>
+      </div>
+
+      <p class="testi-quote">“Nice work”</p>
+
+      <div class="testi-person">
+        <span class="testi-name">Mir Mursaleen</span>
+        <span class="testi-role">Data Scientist & Data Analyst</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="testi-source">From LinkedIn Post</div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <p>© 2026 Sunny • Built with Django & Passion for Data</p>
+    <div class="footer-links">
+    <a href="{% url 'projects' %}">Projects</a>
+    <a href="{% url 'contact' %}">Contact</a>
+      <a href="/static/resume.pdf" target="_blank">Resume</a>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}

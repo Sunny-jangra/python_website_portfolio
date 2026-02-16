@@ -1,0 +1,90 @@
+{% extends 'projects/base.html' %}
+{% block title %}Projects | Portfolio{% endblock %}
+
+{% block content %}
+  <div class="section-head">
+    <h1 style="margin:0;">Projects</h1>
+    <small>My work in one place</small>
+  </div>
+
+  <div class="grid">
+    {% for p in projects %}
+      <div class="card">
+
+        {% if p.video %}
+          <video class="cover" controls preload="metadata">
+            <source src="{{ p.video.url }}" type="video/mp4">
+          </video>
+        {% else %}
+          <div class="cover" style="display:grid;place-items:center;color:var(--muted);">
+            No video uploaded
+          </div>
+        {% endif %}
+
+        <h3 style="margin:0 0 8px;">{{ p.title }}</h3>
+        <p>{{ p.description|truncatechars:120 }}</p>
+
+        {% if p.tech_stack %}
+          <div class="meta">
+            {% for t in p.tech_list %}
+              <span class="tag">{{ t }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- ✅ Like Button -->
+        <div class="actions" style="margin-top:12px;">
+          {% if user.is_authenticated %}
+            <form action="{% url 'toggle_like' p.pk %}" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-primary" type="submit">
+                ❤️ Like ({{ p.likes.count }})
+              </button>
+            </form>
+          {% else %}
+            <small style="color:var(--muted)">Login to like</small>
+          {% endif %}
+        </div>
+
+        <div class="hr"></div>
+
+        <!-- ✅ Comments -->
+        <h4 style="margin:0 0 10px;">Comments ({{ p.comments.count }})</h4>
+
+        {% if user.is_authenticated %}
+          <form method="POST" action="{% url 'add_comment' p.pk %}">
+            {% csrf_token %}
+            <textarea name="comment" rows="2" placeholder="Write a comment..." required
+              style="width:100%;padding:10px;border-radius:10px;background:#0b0f1f;color:white;border:1px solid rgba(255,255,255,.12);"></textarea>
+            <br><br>
+            <button class="btn btn-ghost">Post</button>
+          </form>
+        {% else %}
+          <small style="color:var(--muted)">Login to comment</small>
+        {% endif %}
+
+        <div style="margin-top:12px;">
+          {% for c in p.comments.all|slice:":2" %}
+            <div style="padding:10px;border:1px solid rgba(255,255,255,.08);border-radius:12px;margin-bottom:8px;">
+              <b>{{ c.user.username }}</b>
+              <small style="color:var(--muted)"> • {{ c.created_at|date:"M d, Y" }}</small>
+              <div style="margin-top:6px;color:var(--muted)">{{ c.text }}</div>
+            </div>
+          {% empty %}
+            <small style="color:var(--muted)">No comments yet.</small>
+          {% endfor %}
+        </div>
+
+      </div>
+    {% empty %}
+      <p>No projects yet.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
+projects = Project.objects.all().prefetch_related('likes', 'comments', 'comments__user')
+
+
+
+
+
+

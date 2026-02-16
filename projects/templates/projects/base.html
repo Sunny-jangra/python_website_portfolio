@@ -1,0 +1,98 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Sunny Portfolio{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'projects/style.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="{% url 'home' %}">
+        <span class="brand-badge">S</span>
+        Sunny
+      </a>
+
+      <div class="links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'projects' %}">Projects</a>
+        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'contact' %}">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+    <div class="alert-container">
+      {% for message in messages %}
+        <div class="alert-success">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // Skills Snapshot (skill-pro-card) => % drives bar + stars
+      document.querySelectorAll(".skill-pro-card").forEach(card => {
+        const pct = Math.max(0, Math.min(100, Number(card.dataset.pct || 0)));
+
+        // progress fill
+        const fill = card.querySelector(".bar .fill");
+        if (fill) fill.style.width = pct + "%";
+
+        // star rating from percentage (0-5)
+        const starsBox = card.querySelector(".stars");
+        if (starsBox) {
+          let rating = Math.floor(pct / 20);
+          if (pct === 100) rating = 5;
+
+          starsBox.innerHTML = "";
+          for (let i = 1; i <= 5; i++) {
+            const s = document.createElement("span");
+            s.className = "star" + (i <= rating ? " filled" : "");
+            s.textContent = "★";
+            starsBox.appendChild(s);
+          }
+        }
+
+        // update pct text (optional)
+        const pctText = card.querySelector(".pct");
+        if (pctText) pctText.textContent = pct + "%";
+      });
+
+    });
+  </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".skill-pro-card").forEach(card => {
+    const pct = Number(card.dataset.pct || 0);
+    const fill = card.querySelector(".bar .fill");
+    if (fill) fill.style.width = pct + "%";
+  });
+
+  document.querySelectorAll(".stars").forEach(box => {
+    const rating = Number(box.dataset.rating || 0);
+    box.innerHTML = "";
+    for (let i = 1; i <= 5; i++) {
+      const s = document.createElement("span");
+      s.className = "star" + (i <= rating ? " filled" : "");
+      s.textContent = "★";
+      box.appendChild(s);
+    }
+  });
+});
+</script>
+
+</body>
+</html>
+

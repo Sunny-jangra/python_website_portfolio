@@ -1,0 +1,183 @@
+{% extends 'projects/base.html' %}
+{% load static %}
+
+{% block title %}About | Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="about-wrap">
+
+  <!-- HERO -->
+  <div class="about-hero">
+
+    <div class="about-hero-left">
+      <div class="about-intro">
+        <div class="about-badge">⚡ About Me</div>
+
+        <h1>Hi, I'm <span class="glow-text">Sunny</span> 👋</h1>
+
+        <p class="about-sub">
+          BCA student building <b>data + web projects</b> and moving towards <b>ML Engineering</b>.
+          I’m improving daily with hands-on portfolio projects and clean UI.
+        </p>
+
+        <div class="about-cta">
+          <a class="btn btn-main" href="{% url 'projects' %}">🚀 View Projects</a>
+          <a class="btn btn-outline" href="{% url 'contact' %}">📩 Contact Me</a>
+          <a class="btn btn-resume" href="{% static 'resume.pdf' %}" target="_blank">📄 Resume</a>
+        </div>
+
+        <!-- QUICK HIGHLIGHTS -->
+        <div class="about-highlights">
+          <div class="hl">✅ Python for data cleaning</div>
+          <div class="hl">✅ Power BI dashboards</div>
+          <div class="hl">✅ SQL basics (learning)</div>
+          <div class="hl">✅ Django portfolio website</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-hero-right">
+      <div class="mini-card">
+        <div class="mini-title">Status</div>
+        <div class="mini-value">Open to Internship</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Focus</div>
+        <div class="mini-value">Python • Power BI • SQL</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Goal</div>
+        <div class="mini-value">Data → ML Engineer</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-title">Availability</div>
+        <div class="mini-value">Remote / Hybrid</div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /HERO -->
+
+
+  <!-- SKILLS SNAPSHOT -->
+  <section class="skills-pro">
+  <div class="skills-pro-head">
+    <h3>⚡ Skills Snapshot</h3>
+    <p>Quick view of my current level (updates as I learn)</p>
+  </div>
+
+  <div class="skills-pro-grid">
+    {% for s in skills %}
+    <div class="skill-pro-card" data-pct="{{ s.percent }}">
+      <div class="skill-pro-top">
+        <div class="skill-name">{{ s.name }}</div>
+        <span class="lvl-chip lvl-{{ s.level }}">
+          {{ s.get_level_display }}
+        </span>
+      </div>
+
+      <div class="skill-pro-mid">
+        <div class="stars" data-rating="{{ s.stars }}"></div>
+        <div class="pct">{{ s.percent }}%</div>
+      </div>
+
+      <div class="bar"><span class="fill"></span></div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+  <!-- /SKILLS SNAPSHOT -->
+
+
+  <!-- WHAT I DO -->
+  <div class="about-card">
+    <div class="about-card-title">🧩 What I Do</div>
+
+    <div class="do-item">
+      <div class="do-emoji">📊</div>
+      <div>
+        <div class="do-title">Dashboards & Insights</div>
+        <div class="do-text">KPI cards, trends, slicers, and decision-ready visuals in Power BI/Excel.</div>
+      </div>
+    </div>
+
+    <div class="do-item">
+      <div class="do-emoji">🧹</div>
+      <div>
+        <div class="do-title">Data Cleaning</div>
+        <div class="do-text">Handle missing values, cleanup columns, feature creation, transformations.</div>
+      </div>
+    </div>
+
+    <div class="do-item">
+      <div class="do-emoji">🌐</div>
+      <div>
+        <div class="do-title">Web Portfolio in Django</div>
+        <div class="do-text">Projects page, admin updates, clean UI, resume + contact integration.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      💡 I’m actively looking for <b>Data Analyst Internship</b> (Remote) — I can help with reports, dashboards & cleaning.
+    </div>
+  </div>
+  <!-- /WHAT I DO -->
+
+
+  <!-- ROADMAP -->
+  <div class="about-wide">
+    <div class="about-card-title">🗺️ Learning Roadmap</div>
+
+    <div class="road">
+      <div class="road-item">
+        <div class="dot"></div>
+        <div>
+          <div class="road-title">Now: Data Analytics Foundations</div>
+          <div class="road-text">Python + Pandas + Power BI + SQL basics, building portfolio projects.</div>
+        </div>
+      </div>
+
+      <div class="road-item">
+        <div class="dot"></div>
+        <div>
+          <div class="road-title">Next: Advanced SQL + Real Projects</div>
+          <div class="road-text">Joins, window functions, case studies, dashboards with real datasets.</div>
+        </div>
+      </div>
+
+      <div class="road-item">
+        <div class="dot"></div>
+        <div>
+          <div class="road-title">Later: ML Engineering Path</div>
+          <div class="road-text">Math basics, ML algorithms, evaluation, deployment fundamentals.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /ROADMAP -->
+
+
+  <!-- EDUCATION -->
+  <div class="about-wide">
+    <div class="about-card-title">🎓 Education</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-title">BCA (Bachelor of Computer Applications)</div>
+        <div class="edu-text">MDU Rohtak • 2024–2028</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-title">Portfolio Projects</div>
+        <div class="edu-text">Power BI dashboards + Python analysis + Django website.</div>
+      </div>
+    </div>
+  </div>
+  <!-- /EDUCATION -->
+
+</section>
+
+{% endblock %}
+
+
+  

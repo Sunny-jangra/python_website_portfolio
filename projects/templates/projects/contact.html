@@ -1,0 +1,101 @@
+{% extends 'projects/base.html' %}
+{% load static %}
+
+{% block title %}Contact | Portfolio{% endblock %}
+
+{% block content %}
+
+<section class="contact-wrap">
+  <div class="contact-head">
+    <h1>Let’s work together 🤝</h1>
+    <p>If you have a project, internship opportunity, or want a dashboard/report — message me here. I reply fast ⚡</p>
+  </div>
+
+  <div class="contact-grid">
+    <!-- LEFT: cards -->
+    <div class="contact-left">
+      <div class="contact-cards">
+
+        <!-- Upwork -->
+        <a class="contact-card upwork" href="https://www.upwork.com/freelancers/~0111123b5382c43539" target="_blank" rel="noopener">
+          <div class="brand-ico">
+            <span class="up-badge">Up</span>
+          </div>
+          <div class="contact-meta">
+            <div class="contact-title">Upwork</div>
+            <div class="contact-sub">Hire me / View profile</div>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a class="contact-card linkedin" href="https://www.linkedin.com/in/sunny-jangra/" target="_blank" rel="noopener">
+          <div class="brand-ico">
+            <!-- LinkedIn SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M20.447 20.452H17.21v-5.569c0-1.327-.027-3.036-1.85-3.036-1.851 0-2.135 1.445-2.135 2.939v5.666H9.0V9h3.112v1.561h.044c.434-.823 1.494-1.69 3.072-1.69 3.285 0 3.89 2.164 3.89 4.98v6.601zM5.337 7.433a1.805 1.805 0 1 1 0-3.61 1.805 1.805 0 0 1 0 3.61zM6.956 20.452H3.715V9H6.956v11.452z"/>
+            </svg>
+          </div>
+          <div class="contact-meta">
+            <div class="contact-title">LinkedIn</div>
+            <div class="contact-sub">Open profile</div>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a class="contact-card github" href="https://github.com/Sunny-jangra" target="_blank" rel="noopener">
+          <div class="brand-ico">
+            <!-- GitHub SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M12 .5C5.73.5.75 5.61.75 12.04c0 5.14 3.29 9.5 7.86 11.04.58.11.79-.26.79-.57v-2.03c-3.2.72-3.87-1.58-3.87-1.58-.53-1.37-1.3-1.73-1.3-1.73-1.06-.75.08-.74.08-.74 1.17.08 1.78 1.24 1.78 1.24 1.04 1.82 2.73 1.29 3.4.99.11-.78.41-1.29.74-1.59-2.55-.3-5.23-1.31-5.23-5.83 0-1.29.45-2.35 1.19-3.18-.12-.3-.52-1.51.11-3.15 0 0 .97-.32 3.18 1.22.92-.26 1.9-.39 2.88-.39.98 0 1.97.13 2.89.39 2.2-1.54 3.17-1.22 3.17-1.22.63 1.64.23 2.85.11 3.15.74.83 1.19 1.89 1.19 3.18 0 4.53-2.69 5.53-5.25 5.82.42.37.79 1.1.79 2.22v3.29c0 .31.21.68.8.57 4.56-1.54 7.84-5.9 7.84-11.04C23.25 5.61 18.27.5 12 .5z"/>
+            </svg>
+          </div>
+          <div class="contact-meta">
+            <div class="contact-title">GitHub</div>
+            <div class="contact-sub">View repositories</div>
+          </div>
+        </a>
+
+        <!-- WhatsApp -->
+        <a class="contact-card whatsapp" href="https://wa.me/918307400325" target="_blank" rel="noopener">
+          <div class="brand-ico">
+            <!-- WhatsApp SVG -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M20.52 3.48A11.9 11.9 0 0 0 12.04 0C5.44 0 .12 5.32.12 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.33-1.66a11.9 11.9 0 0 0 5.7 1.45h.01c6.6 0 11.92-5.32 11.92-11.9 0-3.18-1.24-6.17-3.44-8.41ZM12.04 21.7h-.01a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.75.98 1-3.65-.23-.38a9.88 9.88 0 0 1-1.52-5.25C2.12 6.4 6.6 1.92 12.04 1.92c2.64 0 5.12 1.03 6.98 2.88a9.8 9.8 0 0 1 2.89 6.99c0 5.44-4.48 9.91-9.87 9.91Zm5.76-7.42c-.31-.16-1.85-.91-2.14-1.01-.29-.11-.5-.16-.72.16-.21.31-.82 1.01-1 1.21-.18.21-.37.23-.68.08-.31-.16-1.31-.48-2.5-1.53-.93-.83-1.56-1.86-1.74-2.17-.18-.31-.02-.48.13-.63.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.11-.21.05-.39-.03-.55-.08-.16-.72-1.73-.99-2.37-.26-.62-.53-.54-.72-.55h-.62c-.21 0-.55.08-.84.39-.29.31-1.1 1.08-1.1 2.64 0 1.56 1.13 3.07 1.29 3.28.16.21 2.22 3.39 5.38 4.75.75.32 1.34.51 1.8.65.75.24 1.43.21 1.97.13.6-.09 1.85-.76 2.11-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
+            </svg>
+          </div>
+          <div class="contact-meta">
+            <div class="contact-title">WhatsApp</div>
+            <div class="contact-sub">Quick chat</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: form -->
+    <div class="contact-right">
+      <div class="form-card">
+        <h3>Send a message</h3>
+
+        <!-- yahan tumhara existing form rahega -->
+        <form method="POST">
+          {% csrf_token %}
+
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="Enter your name" required>
+
+          <label>Email</label>
+          <input type="email" name="email" placeholder="Enter your email" required>
+
+          <label>Message</label>
+          <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+
+          <button class="btn-submit" type="submit">🚀 Send Message</button>
+        </form>        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
